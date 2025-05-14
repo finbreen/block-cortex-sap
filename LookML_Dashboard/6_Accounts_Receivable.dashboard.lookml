@@ -103,7 +103,7 @@
     type: looker_pie
     fields: [data_intelligence_ar.Past_Due_Interval, data_intelligence_ar.OverDue_Amount]
     filters:
-      data_intelligence_ar.Key_Date: 2022/03/31
+      data_intelligence_ar.Key_Date: 2025/03/31
       data_intelligence_ar.Past_Due_Interval: "-Due after Key Date"
     sorts: [data_intelligence_ar.Past_Due_Interval desc]
     limit: 500
@@ -512,7 +512,7 @@
       data_intelligence_ar.OverDue_Amount]
     pivots: [data_intelligence_ar.Past_Due_Interval]
     filters:
-      data_intelligence_ar.Key_Date: 2022/03/31
+      data_intelligence_ar.Key_Date: 2025/03/31
       data_intelligence_ar.Past_Due_Interval: "-Due after Key Date"
     sorts: [data_intelligence_ar.Past_Due_Interval, data_intelligence_ar.OverDue_Amount
         desc 4]

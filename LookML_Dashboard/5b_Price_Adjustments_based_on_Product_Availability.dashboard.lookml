@@ -119,7 +119,7 @@
   - name: Year
     title: Year
     type: field_filter
-    default_value: 2022/01/01 to 2022/12/22
+    default_value: 2025/01/01 to 2025/05/10
     allow_multiple_values: true
     required: false
     ui_config:

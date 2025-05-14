@@ -118,7 +118,7 @@
       data_intelligence_ar.Open_and_Over_Due_Global_Currency]
     filters:
       data_intelligence_ar.Aging_Interval: '10'
-      data_intelligence_ar.Key_Date: 2022/03/18
+      data_intelligence_ar.Key_Date: 2025/03/18
     sorts: [data_intelligence_ar.Open_and_Over_Due_Global_Currency desc]
     limit: 500
     show_view_names: false
