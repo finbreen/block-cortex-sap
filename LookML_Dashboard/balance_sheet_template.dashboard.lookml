@@ -113,7 +113,8 @@
   - name: Chart of Accounts
     title: Chart of Accounts
     type: field_filter
-    default_value: "{% if _user_attributes['sap_sql_flavor']=='S4' %}{% assign coa = 'YCOA'%}{%elsif _user_attributes['sap_sql_flavor']=='ECC'%}{% assign coa = 'CA01' %}{%else%}{%assign coa = 'something else'%}{% endif %}{{coa}}"
+    default_value: "YIKR"
+    #default_value: "{% if _user_attributes['sap_sql_flavor']=='S4' %}{% assign coa = 'YCOA'%}{%elsif _user_attributes['sap_sql_flavor']=='ECC'%}{% assign coa = 'CA01' %}{%else%}{%assign coa = 'something else'%}{% endif %}{{coa}}"
     allow_multiple_values: false
     required: true
     ui_config:
@@ -125,7 +126,7 @@
   - name: Company Code
     title: Company Code
     type: field_filter
-    default_value: "%WEBER%"
+    default_value: "%Weber Schraubautomaten%"
     allow_multiple_values: false
     required: false
     ui_config:

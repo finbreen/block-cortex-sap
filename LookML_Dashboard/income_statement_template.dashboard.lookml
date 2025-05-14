@@ -181,7 +181,7 @@
   - name: Company Code
     title: Company Code
     type: field_filter
-    default_value: "%WEBER%"
+    default_value: "%Weber Schraubautomaten%"
     allow_multiple_values: true
     required: false
     ui_config:
