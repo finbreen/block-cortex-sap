@@ -168,7 +168,7 @@
   - name: Global Currency
     title: Global Currency
     type: field_filter
-    default_value: USD
+    default_value: EUR
     allow_multiple_values: false
     required: true
     ui_config:
