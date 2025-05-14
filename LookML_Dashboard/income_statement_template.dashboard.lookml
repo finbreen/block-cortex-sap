@@ -104,7 +104,7 @@
   - name: Hierarchy
     title: Hierarchy
     type: field_filter
-    default_value: FPA1
+    default_value: YIKH
     allow_multiple_values: false
     required: true
     ui_config:
@@ -181,7 +181,7 @@
   - name: Company Code
     title: Company Code
     type: field_filter
-    default_value: "%CENTRAL%"
+    default_value: "%WEBER%"
     allow_multiple_values: true
     required: false
     ui_config:
