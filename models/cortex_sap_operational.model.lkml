@@ -88,6 +88,7 @@ explore: sales_orders {
     sql_on: ${sales_orders.material_number_matnr}=${materials_md.material_number_matnr}
           and ${sales_orders.client_mandt}=${materials_md.client_mandt} and
           ${materials_md.language_spras}=${language_map.language_key};;
+          #Note: This last condition affects the product sales view per user based on locale
   }
 
   join: customers_md {
@@ -106,6 +107,7 @@ explore: sales_orders {
   }
 
   join: countries_md {
+    #Note: This table is empty
     type: left_outer
     relationship: one_to_many
     sql_on: ${customers_md.country_key_land1}=${countries_md.country_key_land1}
@@ -114,6 +116,7 @@ explore: sales_orders {
   }
 
   join: sales_organizations_md {
+    #Note: This table is empty
     type: left_outer
     relationship: one_to_many
     sql_on: ${sales_organizations_md.sales_org_vkorg}=${sales_orders.sales_organization_vkorg}
@@ -121,6 +124,7 @@ explore: sales_orders {
           and ${sales_organizations_md.language_spras}=${language_map.language_key} ;;
     }
     join: distribution_channels_md {
+      #Note: This table is empty
       type: left_outer
       relationship: one_to_many
       sql_on: ${distribution_channels_md.distribution_channel_vtweg}=${sales_orders.distribution_channel_vtweg}

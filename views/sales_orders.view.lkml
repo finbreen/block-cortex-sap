@@ -1297,6 +1297,7 @@ view: sales_orders {
 
   dimension: rejection_reason_abgru {
     type: string
+    hidden: no
     sql: ${TABLE}.RejectionReason_ABGRU ;;
   }
 
@@ -2004,7 +2005,7 @@ view: sales_orders {
   ##################################################### Canceled Orders  ############################################################
   dimension: canceled_order {
     type: string
-    sql: IF(${rejection_reason_abgru} IS NOT NULL,'Canceled','NotCanceled') ;;
+    sql: IF(COALESCE(${rejection_reason_abgru}) != '','Canceled','NotCanceled') ;;
     hidden: no
   }
 
