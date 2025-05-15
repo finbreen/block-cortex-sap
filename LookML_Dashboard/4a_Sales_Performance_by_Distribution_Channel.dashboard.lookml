@@ -41,7 +41,7 @@
       Year: sales_orders.creation_date_erdat_date
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 11
     col: 0
@@ -52,7 +52,7 @@
     model: cortex_sap_operational
     explore: sales_orders
     type: looker_grid
-    fields: [distribution_channels_md.distribution_channel_name_vtext, sales_organizations_md.sales_org_name_vtext,
+    fields: [sales_orders.distribution_channel_name, sales_organizations_md.sales_org_name_vtext,
       divisions_md.division_name_vtext, sales_orders.sales_document_vbeln, sales_orders.item_posnr,
       materials_md.material_text_maktx, sales_orders.base_unit_of_measure_meins, currency_conversion_new.ukurs,
       sales_orders.sales_order_value_line_item_source_currency, sales_orders.currency_waerk,
@@ -80,7 +80,7 @@
     show_sql_query_menu_options: false
     pinned_columns:
       "$$$_row_numbers_$$$": left
-    column_order: ["$$$_row_numbers_$$$", distribution_channels_md.distribution_channel_name_vtext,
+    column_order: ["$$$_row_numbers_$$$", sales_orders.distribution_channel_name,
       sales_organizations_md.sales_org_name_vtext, divisions_md.division_name_vtext,
       sales_orders.sales_document_vbeln, sales_orders.item_posnr, sales_orders.max_sold_to_party_name,
       sales_orders.max_ship_to_party_name, sales_orders.max_bill_to_party_name, sales_orders.cumulative_order_quantity_kwmeng,
@@ -91,7 +91,7 @@
     show_row_totals: true
     truncate_header: false
     series_labels:
-      distribution_channels_md.distribution_channel_name_vtext: Distribution Channel
+      sales_orders.distribution_channel_name: Distribution Channel
       sales_organizations_md.sales_org_name_vtext: Sales Org
       sales_orders.division_spart: Division
       sales_orders.sales_document_vbeln: Sales Order
@@ -126,7 +126,7 @@
       Year: sales_orders.creation_date_erdat_date
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 0
     col: 0
@@ -198,7 +198,7 @@
     model: cortex_sap_operational
     explore: sales_orders
     listens_to_filters: []
-    field: distribution_channels_md.distribution_channel_name_vtext
+    field: sales_orders.distribution_channel_name
   - name: Division
     title: Division
     type: field_filter

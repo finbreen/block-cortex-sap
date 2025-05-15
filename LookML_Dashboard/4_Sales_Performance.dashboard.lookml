@@ -71,7 +71,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 3
     col: 0
@@ -134,7 +134,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 9
     col: 0
@@ -145,7 +145,7 @@
     model: cortex_sap_operational
     explore: sales_orders
     type: looker_pie
-    fields: [distribution_channels_md.distribution_channel_name_vtext, sales_orders.sales_order_netvalue_global_currency_dist_channel]
+    fields: [sales_orders.distribution_channel_name, sales_orders.sales_order_netvalue_global_currency_dist_channel]
     filters: {}
     sorts: [sales_orders.sales_order_netvalue_global_currency_dist_channel desc]
     limit: 500
@@ -209,7 +209,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 15
     col: 0
@@ -251,7 +251,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 15
     col: 12
@@ -294,7 +294,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 21
     col: 0
@@ -357,7 +357,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 21
     col: 4
@@ -417,7 +417,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 21
     col: 14
@@ -449,7 +449,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Product: materials_md.material_text_maktx
     row: 0
     col: 0
@@ -521,7 +521,7 @@
     model: cortex_sap_operational
     explore: sales_orders
     listens_to_filters: []
-    field: distribution_channels_md.distribution_channel_name_vtext
+    field: sales_orders.distribution_channel_name
   - name: Division
     title: Division
     type: field_filter

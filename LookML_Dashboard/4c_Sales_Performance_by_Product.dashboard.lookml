@@ -11,7 +11,7 @@
     explore: sales_orders
     type: looker_grid
     fields: [materials_md.material_text_maktx, sales_orders.sales_document_vbeln,
-      sales_orders.item_posnr, sales_organizations_md.sales_org_name_vtext, distribution_channels_md.distribution_channel_name_vtext,
+      sales_orders.item_posnr, sales_organizations_md.sales_org_name_vtext, sales_orders.distribution_channel_name,
       divisions_md.division_name_vtext, sales_orders.cumulative_order_quantity_kwmeng,
       sales_orders.base_unit_of_measure_meins, currency_conversion_new.ukurs, sales_orders.sales_order_value_line_item_source_currency,
       sales_orders.currency_waerk, sales_orders.sales_order_value_glob_curr, currency_conversion_new.tcurr,
@@ -40,7 +40,7 @@
     column_order: ["$$$_row_numbers_$$$", materials_md.material_text_maktx, sales_orders.sales_document_vbeln,
       sales_orders.item_posnr, sales_orders.max_sold_to_party_name, sales_orders.max_ship_to_party_name,
       sales_orders.max_bill_to_party_name, sales_organizations_md.sales_org_name_vtext,
-      distribution_channels_md.distribution_channel_name_vtext, divisions_md.division_name_vtext,
+      sales_orders.distribution_channel_name, divisions_md.division_name_vtext,
       sales_orders.cumulative_order_quantity_kwmeng, sales_orders.base_unit_of_measure_meins,
       currency_conversion_new.ukurs, sales_orders.sales_order_value_line_item_source_currency,
       sales_orders.currency_waerk, sales_orders.sales_order_value_glob_curr, currency_conversion_new.tcurr]
@@ -55,7 +55,7 @@
       customers_md.name2_pson2: Ship to Party
       customers_md.name3_pson3: Bill to Party
       sales_organizations_md.sales_org_name_vtext: Sales Org
-      distribution_channels_md.distribution_channel_name_vtext: Distribution Channel
+      sales_orders.distribution_channel_name: Distribution Channel
       sales_orders.division_spart: Division
       sales_orders.cumulative_order_quantity_kwmeng: Sales Order Qty
       sales_orders.base_unit_of_measure_for_product_group_prbme: Base UoM
@@ -80,7 +80,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Division: divisions_md.division_name_vtext
       Product: materials_md.material_text_maktx
     row: 0
@@ -122,7 +122,7 @@
       Currency: currency_conversion_new.tcurr
       Region: countries_md.country_name_landx
       Sales Org: sales_organizations_md.sales_org_name_vtext
-      Distribution Channel: distribution_channels_md.distribution_channel_name_vtext
+      Distribution Channel: sales_orders.distribution_channel_name
       Division: divisions_md.division_name_vtext
       Product: materials_md.material_text_maktx
     row: 10
@@ -195,7 +195,7 @@
     model: cortex_sap_operational
     explore: sales_orders
     listens_to_filters: []
-    field: distribution_channels_md.distribution_channel_name_vtext
+    field: sales_orders.distribution_channel_name
   - name: Division
     title: Division
     type: field_filter
