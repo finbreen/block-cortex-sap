@@ -6,6 +6,10 @@ include: "/views/**/*.view"
 include: "/components/*.lkml"
 include: "/explores_finance/*.explore"
 
+explore: vis_logic {
+  label: "Order Income Overview"
+}
+
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
