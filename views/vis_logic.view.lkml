@@ -51,6 +51,7 @@ view: vis_logic {
   dimension: vbtyp {
     type: string
     sql: ${TABLE}.VBTYP ;;
+    drill_fields: [erfassungs_datum_month, erfassungs_datum_quarter]
   }
   dimension: vkorg {
     type: string
@@ -84,5 +85,6 @@ view: vis_logic {
     type: sum
     sql: ${total_vis_dimension} ;;
     value_format_name: eur_0
+    drill_fields: [vbtyp, total_vis]
   }
 }

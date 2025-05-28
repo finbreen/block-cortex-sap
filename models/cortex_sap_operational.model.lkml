@@ -5,6 +5,7 @@ connection: "@{CONNECTION_NAME}"
 include: "/views/**/*.view"
 include: "/components/*.lkml"
 include: "/explores_finance/*.explore"
+fiscal_month_offset: 3
 
 explore: vis_logic {
   label: "Order Income Overview"
