@@ -7,8 +7,19 @@ include: "/components/*.lkml"
 include: "/explores_finance/*.explore"
 fiscal_month_offset: 3
 
+fiscal_month_offset: 3
+
+
+explore: vis_26052025 {
+  label: "Order Income"
+}
+
 explore: vis_logic {
   label: "Order Income Overview"
+}
+
+explore: sis {
+  label: "SIS"
 }
 
 # Datagroups define a caching policy for an Explore. To learn more,
