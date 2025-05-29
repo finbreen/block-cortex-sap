@@ -21,6 +21,13 @@ explore: sis {
   label: "SIS"
 }
 
+explore: bill_of_materials {
+  access_filter: {
+    field: component_id
+    user_attribute: component_ids
+  }
+}
+
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
