@@ -11,7 +11,7 @@ view: vis_logic {
   }
   dimension_group: erfassungs_datum {
     type: time
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [raw, date, week, month, quarter, year, fiscal_year, fiscal_quarter]
     convert_tz: no
     datatype: date
     sql: ${TABLE}.erfassungs_datum ;;
@@ -51,7 +51,7 @@ view: vis_logic {
   dimension: vbtyp {
     type: string
     sql: ${TABLE}.VBTYP ;;
-    drill_fields: [erfassungs_datum_month, erfassungs_datum_quarter]
+    # drill_fields: [erfassungs_datum_month, erfassungs_datum_quarter]
   }
   dimension: vkorg {
     type: string
