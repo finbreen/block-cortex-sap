@@ -196,6 +196,11 @@ view: sis {
     type: string
     sql: ${TABLE}.ZAEHLER_counter ;;
   }
+
+  set: drill_fields {
+    fields: [aubel_sales_document, vbeln_billing_document, erdat_creation_date, audat_document_date_calculated_date, vbtyp_document_category, netwr_net_value, netwr_eur_net_value_eur, waerk_document_currency, ukurs_exchange_rate, menge_quantity, meins_base_unit_measure, order_income_calculated, revenue_calculated, credit_calculated
+      ]}
+
   measure: count {
     type: count
   }
@@ -208,18 +213,21 @@ view: sis {
       label: "SIS Dashboard"
       url: "/dashboards/3?Vtweg+Distribution+Channel={{ _filters['sis.vtweg_distribution_channel']| url_encode }}"
     }
+    drill_fields: [drill_fields*]
   }
   measure: total_revenue {
     label: "Total Revenue"
     type: sum
     sql: ${revenue_calculated} ;;
     value_format_name: eur_0
+    drill_fields: [drill_fields*]
   }
   measure: total_credits {
     label: "Total Credits"
     type: sum
     sql: ${credit_calculated} ;;
     value_format_name: eur_0
+    drill_fields: [drill_fields*]
   }
 
 }
