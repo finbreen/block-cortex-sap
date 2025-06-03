@@ -10,6 +10,18 @@ fiscal_month_offset: 3
 
 explore: sis {
   label: "SIS"
+  join: customers {
+    relationship: many_to_one
+    sql_on: ${customers.kunnr_customer_number} = ${sis.kunnr_customer_number} ;;
+  }
+  join: document_categories {
+    relationship: many_to_one
+    sql_on: ${document_categories.vbtyp_document_category} = ${sis.vbtyp_document_category};;
+  }
+  join: tvtwt {
+    relationship: many_to_one
+    sql_on: ${tvtwt.vtweg} = ${sis.vtweg_sales_channel} ;;
+  }
 }
 
 explore: bill_of_materials {
