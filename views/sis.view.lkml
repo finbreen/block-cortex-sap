@@ -207,7 +207,7 @@ view: sis {
   measure: total_order_income {
     label: "Total Order Income"
     type: sum
-    sql: ${order_income_calculated} ;;
+    sql: ${order_income_calculated} + ${credit_calculated} ;;
     value_format_name: eur_0
     link: {
       label: "SIS Dashboard"
