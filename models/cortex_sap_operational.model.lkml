@@ -19,6 +19,12 @@ explore: vis_logic {
 
 explore: sis {
   label: "SIS"
+
+  # Sample Joining LookML
+  # join: vtweg_lookup {
+  #   relationship: many_to_one
+  #   sql_on: ${sis.vtweg_distribution_channel} = ${vtweg_lookup.relevant_field};;
+  # }
 }
 
 explore: bill_of_materials {
