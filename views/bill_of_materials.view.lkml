@@ -30,6 +30,7 @@ view: bill_of_materials {
   dimension: level {
     type: number
     sql: ${TABLE}.level ;;
+    # required_access_grants: [pii_data]
   }
   measure: count {
     label: "Total Components Count"

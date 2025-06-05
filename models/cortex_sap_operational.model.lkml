@@ -8,11 +8,16 @@ include: "/explores_finance/*.explore"
 
 fiscal_month_offset: 3
 
+# Example Column-Level Permissioning
+# access_grant: pii_data {
+#   user_attribute: can_see_pii
+#   allowed_values: [ "Yes" ]
+# }
+
 explore: financial_planning {
-  # hidden: yes
-  join: vtweg_lookup {
-    relationship: many_to_one
-    sql_on: ${financial_planning.vtweg_sales_channel} = ${vtweg_lookup.vtweg_distribution_channel};;
+  # Example of filtering the data by default
+  always_filter: {
+    filters: [financial_planning.vkorg_sales_organization: "1000"]
   }
 }
 
@@ -30,19 +35,6 @@ explore: vis_logic {
 
 explore: sis {
   label: "SIS"
-  # join: financial_planning_derived {
-  #   relationship: many_to_one
-  #   type: left_outer
-  #   sql_on: ${sis.erdat_creation_month} = ${financial_planning_derived.plan_datum_plan_month} AND ${sis.vtweg_distribution_channel} = ${financial_planning_derived.vtweg_sales_channel}
-  #             AND ... ;;
-  # }
-
-  # Sample Joining LookML
-  join: vtweg_lookup {
-    view_label: "Sis"
-    relationship: many_to_one
-    sql_on: ${sis.vtweg_distribution_channel} = ${vtweg_lookup.vtweg_distribution_channel};;
-  }
 }
 
 explore: bill_of_materials {
