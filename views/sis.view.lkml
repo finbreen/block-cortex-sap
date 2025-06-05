@@ -8,6 +8,10 @@ view: sis {
   dimension: aubel_sales_document {
     type: string
     sql: ${TABLE}.AUBEL_sales_document ;;
+    link: {
+      label: "Lookup Orders by Sales Document"
+      url: "/dashboards/6?Aubel+Sales+Document={{ value | encode_uri }}"
+    }
   }
   dimension_group: audat_document_date_calculated {
     type: time
@@ -46,10 +50,21 @@ view: sis {
   }
   dimension_group: erdat_creation {
     type: time
-    timeframes: [raw, date, week, month, quarter, year, fiscal_year, fiscal_quarter, fiscal_month_num]
+    timeframes: [raw, week, month, quarter, year, fiscal_year, fiscal_quarter, fiscal_month_num]
     convert_tz: no
     datatype: date
     sql: ${TABLE}.ERDAT_creation_date ;;
+  }
+  dimension: erdat_creation_date {
+    type: date
+    datatype: date
+    group_label: "Erdat Creation Date"
+    label: "Date"
+    sql: ${TABLE}.ERDAT_creation_date ;;
+    link: {
+      label: "Lookup Orders by Date"
+      url: "/dashboards/6?Aubel+Sales+Document=&Date={{ value | encode_uri }}"
+    }
   }
   dimension: erzet_entry_time {
     type: string
@@ -208,6 +223,7 @@ view: sis {
       label: "SIS Dashboard"
       url: "/dashboards/3?Vtweg+Distribution+Channel={{ _filters['sis.vtweg_distribution_channel']| url_encode }}"
     }
+    drill_fields: [aubel_sales_document, total_order_income]
   }
   measure: total_revenue {
     label: "Total Revenue"
