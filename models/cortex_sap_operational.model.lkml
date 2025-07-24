@@ -8,6 +8,7 @@ include: "/explores_finance/*.explore"
 
 fiscal_month_offset: 3
 
+
 explore: sis {
   label: "SIS"
   join: customers {
@@ -22,6 +23,7 @@ explore: sis {
     relationship: many_to_one
     sql_on: ${tvtwt.vtweg} = ${sis.vtweg_sales_channel} ;;
   }
+
 }
 
 explore: bill_of_materials {
@@ -30,6 +32,15 @@ explore: bill_of_materials {
     user_attribute: component_ids
   }
 }
+
+explore: financial_planning {
+  join: tvtwt {
+    relationship: many_to_one
+    sql_on: ${tvtwt.vtweg} = ${financial_planning.vtweg_sales_channel} ;;
+  }
+
+}
+
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.

@@ -1,5 +1,16 @@
 view: tvtwt {
-  sql_table_name: `weber-data-warehouse.SAP_PROD_010.tvtwt` ;;
+
+  derived_table: {
+    sql:
+      SELECT
+        *
+      FROM
+        `weber-data-warehouse.SAP_PROD_010.tvtwt`
+      WHERE spras = 'D'
+        AND vtweg NOT IN ('00', '01', '70', '80');;
+  }
+
+
 
   dimension: is_deleted {
     type: yesno
@@ -37,6 +48,13 @@ view: tvtwt {
     description: "Vertriebsweg"
     sql: ${TABLE}.vtweg ;;
   }
+
+  dimension: vtweg_vtext {
+    type: string
+    description: "Vertriebsweg - Vertriebsbezeichnung | Sales Channel - Sales Channel Description"
+    sql: CONCAT(${TABLE}.vtweg, ' - ', ${vtext}) ;;
+  }
+
   measure: count {
     type: count
   }

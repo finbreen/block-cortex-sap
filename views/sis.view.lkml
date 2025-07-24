@@ -79,6 +79,64 @@ view: sis {
     description: "Anlageuhrzeit - Uhrzeit der Erstellung im Format HHMMSS / Entry Time - Time of record creation in HHMMSS format"
     sql: ${TABLE}.ERZET_entry_time ;;
   }
+
+  dimension: erdat_year_month {
+    type: string
+    hidden: yes                      # erscheint nicht im UI
+    sql: FORMAT_DATE('%Y-%m', ${erdat_creation_date}) ;;
+  }
+
+
+  parameter: date_granularity {
+    type: unquoted
+    default_value: "month"
+    allowed_value: {
+      label: "By Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "By Week"
+      value: "week"
+    }
+    allowed_value: {
+      label: "By Month"
+      value: "month"
+    }
+    allowed_value: {
+      label: "By Fiscal Year"
+      value: "fiscal_year"
+    }
+  }
+
+  dimension: parameterised_date {
+    label: "parameterised_date"
+    sql:
+    {% if date_granularity._parameter_value == 'day' %}
+      ${erdat_creation_date}
+    {% elsif date_granularity._parameter_value == 'week' %}
+      ${erdat_creation_week}
+    {% elsif date_granularity._parameter_value == 'month' %}
+      ${erdat_creation_month_string}
+    {% elsif date_granularity._parameter_value == 'fiscal_year' %}
+      ${erdat_creation_fiscal_year_string}
+    {% else %}
+      ${erdat_creation_date}
+    {% endif %};;
+    html:
+    {% if date_granularity._parameter_value == 'day' %}
+    {{ rendered_value | date: "%Y-%m-%d" }}
+    {% elsif date_granularity._parameter_value == 'week' %}
+    {{ rendered_value | date: "%Y-%W" }}
+    {% elsif date_granularity._parameter_value == 'month' %}
+    {{ rendered_value | append: "-01" | date: "%Y-%m" }}
+    {% elsif date_granularity._parameter_value == 'fiscal_year' %}
+    {{ rendered_value }}
+    {% else %}
+    {{ rendered_value }}
+    {% endif %};;
+  }
+
+
   dimension: fcode_function_code {
     type: string
     description: "Funktionscode - Spezifischer Funktionscode innerhalb der Transaktion / Function Code - Specific function code within the transaction"
@@ -260,7 +318,7 @@ view: sis {
   }
 
   set: drill_fields {
-    fields: [aubel_sales_document, vbeln_billing_document, erdat_creation_date, audat_document_date_calculated_date, vbtyp_document_category, vtweg_sales_channel, netwr_net_value, netwr_eur_net_value_eur, waerk_document_currency, ukurs_exchange_rate, menge_quantity, meins_base_unit_measure, order_income_calculated, revenue_calculated, credit_calculated
+    fields: [aubel_sales_document, vbeln_billing_document, erdat_creation_date, audat_document_date_calculated_date, vbtyp_document_category, vtweg_sales_channel, netwr_net_value, netwr_eur_net_value_eur, waerk_document_currency, ukurs_exchange_rate, menge_quantity, meins_base_unit_measure, order_income_calculated, revenue_calculated, credit_calculated, customers.name1_customer_name
     ]}
 
   measure: total_order_income {

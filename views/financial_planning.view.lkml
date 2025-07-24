@@ -14,7 +14,7 @@ view: financial_planning {
   dimension_group: geschaeftsjahr_datum_fiscal {
     type: time
     description: "Geschäftsjahrdatum - Datum des Geschäftsjahrs / Fiscal Year Date - Date of fiscal year"
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [raw, date, week, month, month_name, quarter, year, fiscal_year, fiscal_month_num]
     convert_tz: no
     datatype: date
     sql: ${TABLE}.GESCHAEFTSJAHR_DATUM_fiscal_date ;;
@@ -24,6 +24,8 @@ view: financial_planning {
     description: "Geschäftsjahr Monat - Jahr und Monat des Geschäftsjahrstarts (YYYY-MM) / Fiscal Year Month - Year and month of fiscal year start"
     sql: ${TABLE}.GESCHAEFTSJAHR_MONAT_fiscal_year_month ;;
   }
+
+
   dimension_group: load_timestamp_load_timestamp {
     type: time
     description: "Ladezeitpunkt - Zeitpunkt des Datenladens / Load Timestamp - Data loading timestamp"
@@ -33,11 +35,73 @@ view: financial_planning {
   dimension_group: plan_datum_plan {
     type: time
     description: "Plandatum - Datum der Planung / Plan Date - Date of planning"
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [raw, date, week, month, month_name, quarter, year, fiscal_year, fiscal_month_num]
     convert_tz: no
     datatype: date
     sql: ${TABLE}.PLAN_DATUM_plan_date ;;
   }
+
+  dimension: plan_datum_plan_year_string {
+    type:  string
+    sql:  CONCAT("FY", CAST(${plan_datum_plan_fiscal_year} AS string)) ;;
+  }
+
+  dimension: plan_datum_plan_month_string  {
+    type:  string
+    #sql:  CONCAT(${erdat_creation_fiscal_month_num}, '-', CAST(${erdat_creation_month_name} AS string)) ;;
+    sql:   CAST(${plan_datum_plan_month_name} AS string);;
+    order_by_field:  plan_datum_plan_fiscal_month_num
+  }
+
+  parameter: date_granularity {
+    type: unquoted
+    default_value: "month"
+    allowed_value: {
+      label: "By Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "By Week"
+      value: "week"
+    }
+    allowed_value: {
+      label: "By Month"
+      value: "month"
+    }
+    allowed_value: {
+      label: "By Fiscal Year"
+      value: "fiscal_year"
+    }
+  }
+
+  dimension: parameterised_date {
+    label: "parameterised_date"
+    sql:
+    {% if date_granularity._parameter_value == 'day' %}
+      ${plan_datum_plan_date}
+    {% elsif date_granularity._parameter_value == 'week' %}
+      ${plan_datum_plan_week}
+    {% elsif date_granularity._parameter_value == 'month' %}
+      ${plan_datum_plan_month_string}
+    {% elsif date_granularity._parameter_value == 'fiscal_year' %}
+      ${plan_datum_plan_year_string}
+    {% else %}
+      ${plan_datum_plan_date}
+    {% endif %};;
+    html:
+    {% if date_granularity._parameter_value == 'day' %}
+    {{ rendered_value | date: "%Y-%m-%d" }}
+    {% elsif date_granularity._parameter_value == 'week' %}
+    {{ rendered_value | date: "%Y-%W" }}
+    {% elsif date_granularity._parameter_value == 'month' %}
+      {{ rendered_value | append: "-01" | date: "%Y-%m" }}
+      {% elsif date_granularity._parameter_value == 'fiscal_year' %}
+      {{ rendered_value }}
+        {% else %}
+        {{ rendered_value }}
+        {% endif %};;
+  }
+
   dimension: plan_jahr_monat_plan_year_month {
     type: string
     description: "Plan Jahr-Monat - Jahr und Monat der Planung (YYYY-MM) / Plan Year-Month - Year and month of planning"
